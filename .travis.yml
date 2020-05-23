@@ -9,20 +9,20 @@ before_install:
 script:
   - docker run -e CI=true vishalsumant/react-test npm test    
 
-after_success:
-  - docker build -t vishalsumant/multi-client  ./client
-  - docker build -t vishalsumant/multi-nginx  ./nginx
-  - docker build -t vishalsumant/multi-server  ./server
-  - docker build -t vishalsumant/multi-worker  ./worker
+# after_success:
+#   - docker build -t vishalsumant/multi-client  ./client
+#   - docker build -t vishalsumant/multi-nginx  ./nginx
+#   - docker build -t vishalsumant/multi-server  ./server
+#   - docker build -t vishalsumant/multi-worker  ./worker
 
 
-- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+# - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
 
-- docker push vishalsumant/multi-client
-- docker push vishalsumant/multi-nginx
-- docker push vishalsumant/multi-server
-- docker push vishalsumant/multi-worker
+# - docker push vishalsumant/multi-client
+# - docker push vishalsumant/multi-nginx
+# - docker push vishalsumant/multi-server
+# - docker push vishalsumant/multi-worker
 
 
 
