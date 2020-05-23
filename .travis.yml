@@ -3,26 +3,21 @@ sudo: required
 services:
   - docker
 
-# Build reatc app image (client)
 before_install:
   - docker build -t vishalsumant/react-test -f ./client/Dockerfile.dev ./client
 
-# Travis CI will run the test
 script:
   - docker run -e CI=true vishalsumant/react-test npm test    
 
-# Build Production images
 after_success:
   - docker build -t vishalsumant/multi-client  ./client
   - docker build -t vishalsumant/multi-nginx  ./nginx
   - docker build -t vishalsumant/multi-server  ./server
   - docker build -t vishalsumant/multi-worker  ./worker
 
-# Log in to Docker CLI
 
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
-# Push the production images to docker hub
 
 - docker push vishalsumant/multi-client
 - docker push vishalsumant/multi-nginx
