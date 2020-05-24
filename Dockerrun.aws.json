@@ -5,24 +5,28 @@
             "name":"client",
             "image":"vishalsumant/multi-client",
             "hostname":"client",
-            "essential":false
+            "essential":false,
+            "memory":128
         },
         {
             "name":"server",
             "image":"vishalsumant/multi-server",
             "hostname":"api",
-            "essential":false
+            "essential":false,
+            "memory":128
         },{
             "name":"worker",
             "image":"vishalsumant/multi-worker",
             "hostname":"worker",
-            "essential":false
+            "essential":false,
+            "memory":128
         },
         {
             "name":"nginx",
             "image":"vishalsumant/multi-nginx",
             "hostname":"nginx",
             "essential":true,
+            "memory":128,
             "portMappings":[
                 {
                     "hostPort": 80,
