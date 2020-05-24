@@ -4,22 +4,22 @@ services:
   - docker
 
 before_install:
-  - docker build -t vishalsumant/react-client -f ./client/Dockerfile.dev ./client
+  - docker build -t vishalsumant/client -f ./client/Dockerfile.dev ./client
     
 script:
-  - docker run -e CI=true vishalsumant/react-client npm test 
+  - docker run -e CI=true vishalsumant/client npm test 
 
 after_success:
-  - docker build -t vishalsumant/multi-react-client ./client
-  - docker build -t vishalsumant/multi-nginx  ./nginx
-  - docker build -t vishalsumant/multi-server  ./server
-  - docker build -t vishalsumant/multi-worker  ./worker
+  - docker build -t vishalsumant/multi-client ./client
+  - docker build -t vishalsumant/multi-nginx ./nginx
+  - docker build -t vishalsumant/multi-server ./server
+  - docker build -t vishalsumant/multi-worker ./worker
 
 
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
 
-  - docker push vishalsumant/multi-react-client
+  - docker push vishalsumant/multi-client
   - docker push vishalsumant/multi-nginx
   - docker push vishalsumant/multi-server
   - docker push vishalsumant/multi-worker
