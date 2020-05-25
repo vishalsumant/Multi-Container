@@ -6,9 +6,6 @@ services:
 before_install:
   - docker build -t vishalsumant/client -f ./client/Dockerfile.dev ./client
     
-script:
-  - docker run -e CI=true vishalsumant/client npm test 
-
 after_success:
   - docker build -t vishalsumant/multi-client ./client
   - docker build -t vishalsumant/multi-nginx ./nginx
